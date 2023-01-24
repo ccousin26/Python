@@ -16,7 +16,7 @@ def auth(conn):
             
             username=input("Username : ")
             pwd=getpass.getpass()
-            print("\n")
+            print("\n") 
             pwd=hashlib.sha256(pwd.encode('utf-8')).hexdigest()
 
             result = conn.execute("SELECT * FROM user WHERE username = ? AND password = ?", (username, pwd))
@@ -24,15 +24,18 @@ def auth(conn):
                 print("Authentification success")
                 cursor = conn.execute("SELECT status FROM user WHERE username = ? AND password = ?", (username, pwd))
                 status = cursor.fetchone()[0] 
+                cursor = conn.execute("SELECT username FROM user WHERE username = ? AND password = ?", (username, pwd))
+                username_co = cursor.fetchone()[0]
                 print(status)
-                return True, status
+                print(username_co)
+                return True, status, username_co
             else:
                 print("Authentification failed\n")
                 i+=1
                 if i==3:
                     rep="N"
                     print("END OF THE AUTHENTIFICATION\n")
-                    return False, None
+                    return False, None, None
 
 
 

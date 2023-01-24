@@ -12,9 +12,10 @@ try:
     conn = sqlite3.connect('bd.sqlite')
     print("Connected")
     
-    isConnected, status=auth.auth(conn)
+    isConnected, status, username_co=auth.auth(conn)
     print(isConnected)
     print(status)
+    print(username_co)
     if isConnected:
         menu=None
         while menu!='5':
@@ -32,9 +33,9 @@ try:
                 case '2' :
                     supp_user.supp(conn, status)
                 case '3' :
-                    edit_user.edit(conn)
+                    edit_user.edit(conn, status)
                 case '4' :
-                    show.show_table(conn, status)
+                    show.show_table(conn, status, username_co)
                 case '5' :
                     conn.close()
                 case _:
