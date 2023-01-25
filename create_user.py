@@ -1,6 +1,7 @@
 import getpass
 import hashlib
 import random 
+import datetime
 
 def create(conn, status):
     '''
@@ -49,18 +50,26 @@ def create(conn, status):
                     print('Error status is empty')
                     break
                 name = input("Name : ")
-                if name == None:
+                if name == '':
                     print('Error name is empty')
                     break
                 lastname = input("Last name : ")
-                if lastname == None:
+                if lastname == '':
                     print('Error lastname is empty')
                     break
-                username = name[0] + lastname #concatenation du prénom et nom.
-                #requete sql qui permet de selectionner le prénom du user en se basant sur son username. Si la requete aboutit, alors l'utilisateur existe déjà.
-                cur.execute("SELECT first_name FROM user WHERE username = ?", (username,)) 
-                data = cur.fetchall() #lance la requete.
-                
+                x = name.isalpha()
+                y = lastname.isalpha()
+                print(name)
+                print(lastname)
+                if x == True and y == True :
+                    print('yessss')
+                    username = name[0] + lastname #concatenation du prénom et nom.
+                    #requete sql qui permet de selectionner le prénom du user en se basant sur son username. Si la requete aboutit, alors l'utilisateur existe déjà.
+                    cur.execute("SELECT first_name FROM user WHERE username = ?", (username,)) 
+                    data = cur.fetchall() #lance la requete.
+                else :
+                    print("Error it's not just letters")
+                    break
                 '''
                 fetchall retourne un tableau, en vérifiant la taille du tableau on sait alors si la requete à aboutit à un résultat non null.
                 '''
@@ -75,14 +84,14 @@ def create(conn, status):
                     print()
                     print("Your password is : " + pwd)
                     print()
-                    print("---Adding user---")
+                    print("---| Adding user |---")
                     print("Username :      ", username)
                     print("Name :          ", name)
                     print("Last name :     ", lastname)
                     print("Your password : ", pwd)
                     print("Status :        ", status_user)
                     date = datetime.date.today()
-                    print(date)
+                    print("Creation Date : ", date)
 
                     pwd = hashlib.sha256(pwd.encode('utf-8')).hexdigest() #permet de hasher le pwd avant la sauvegarde dans la bd
                     resp=input("Add this user in the db ? Y/N : ")
