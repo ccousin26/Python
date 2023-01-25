@@ -1,6 +1,7 @@
 import hashlib
 import getpass
-
+from datetime import *
+import datetime
 
 #TODO: voir en fonction du status si il peut ou non avoir accès à la db entière ou juste à ses informations personnels
 
@@ -22,12 +23,16 @@ def auth(conn):
             result = conn.execute("SELECT * FROM user WHERE username = ? AND password = ?", (username, pwd))
             if (len(result.fetchall()) != 0):
                 print("Authentification success")
-                cursor = conn.execute("SELECT status FROM user WHERE username = ? AND password = ?", (username, pwd))
+                cursor = conn.execute("SELECT status, username, date FROM user WHERE username = ? AND password = ?", (username, pwd))
                 status = cursor.fetchone()[0] 
                 cursor = conn.execute("SELECT username FROM user WHERE username = ? AND password = ?", (username, pwd))
                 username_co = cursor.fetchone()[0]
-                print(status)
-                print(username_co)
+                cursor = conn.execute("SELECT date FROM user WHERE username = ? AND password = ?", (username, pwd))
+                date = cursor.fetchone()[0]
+                # print(status)
+                # print(username_co)
+                current_date = datetime.date.today()
+                print(current_date)
                 return True, status, username_co
             else:
                 print("Authentification failed\n")

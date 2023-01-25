@@ -45,12 +45,18 @@ def create(conn, status):
                     case _:
                         print("error")
                         break
-                if(status_user == None):
+                if status_user == None:
+                    print('Error status is empty')
                     break
                 name = input("Name : ")
+                if name == None:
+                    print('Error name is empty')
+                    break
                 lastname = input("Last name : ")
+                if lastname == None:
+                    print('Error lastname is empty')
+                    break
                 username = name[0] + lastname #concatenation du prénom et nom.
-                print(username)
                 #requete sql qui permet de selectionner le prénom du user en se basant sur son username. Si la requete aboutit, alors l'utilisateur existe déjà.
                 cur.execute("SELECT first_name FROM user WHERE username = ?", (username,)) 
                 data = cur.fetchall() #lance la requete.
@@ -66,17 +72,22 @@ def create(conn, status):
                         break
                 else:              
                     pwd = generatePassword(9)
+                    print()
                     print("Your password is : " + pwd)
+                    print()
                     print("---Adding user---")
-                    print("Username : ", username)
-                    print("Name : ", name)
-                    print("Last name : ", lastname)
-                    print("Your password :", pwd)
-                    print("Status : ", status_user)
+                    print("Username :      ", username)
+                    print("Name :          ", name)
+                    print("Last name :     ", lastname)
+                    print("Your password : ", pwd)
+                    print("Status :        ", status_user)
+                    date = datetime.date.today()
+                    print(date)
+
                     pwd = hashlib.sha256(pwd.encode('utf-8')).hexdigest() #permet de hasher le pwd avant la sauvegarde dans la bd
                     resp=input("Add this user in the db ? Y/N : ")
                     if resp.lower() == 'y':
-                        cur.execute("INSERT INTO user VALUES(NULL,?,?,?,?,?)", (username,name,lastname,pwd,status_user)) #ajoute l'utilisateur à la db en passant en argument ses informations
+                        cur.execute("INSERT INTO user VALUES(NULL,?,?,?,?,?,?)", (username,name,lastname,pwd,status_user,date)) #ajoute l'utilisateur à la db en passant en argument ses informations
                         conn.commit() #envoyer la requete
                         print("USER ADD\n")
                         for row in cur.execute("SELECT * FROM user"): #affiche la table
@@ -85,8 +96,8 @@ def create(conn, status):
                     else:
                         i=0
                     break
+                
                     
-                        
 
 def generatePassword(pwdLen):
     '''

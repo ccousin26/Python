@@ -13,16 +13,14 @@ def supp(conn, status):
         return 0
     data=input("Do you want to see user table ? : Y/N  ")
     if data.lower()=='y':
-        for row in cur.execute("SELECT user_id, username, first_name, last_name FROM user"):
+        for row in cur.execute("SELECT user_id, username, first_name, last_name,status FROM user"):
             print(row)
     print()
-
+    i=0
     loop=True
     while loop==True:
         print("SUPPRESSION\n")
         print("Identification of user : ")
-        i=0
-        count=0
         state=True
         while state==True:
             username=input("username : ")    
@@ -32,22 +30,28 @@ def supp(conn, status):
                 del_user(conn, username, cur)
                 other=input("Remove another user ? Y/N :  ")
                 if other.lower()=='y':
+                    i=0
                     state==False
                 else:
                     return 0
             else : #si il n'est pas sudo alors conditions de suppression
-                if len(data) == 0: #on vérifie que l'utilsiateur spécifié existe
+                if len(data) == 0: #on vérifie que l'utilisateur spécifié existe
+                    i+=1
+                    if i==3:
+                        print("Too many tries")
+                        return 0
                     print("Doesn't exists")
                 else :
                     if data[0][-1] == "patient": #on récupere le dernier element de la requete sql qui nous retourne toutes les informations de l'utilisateur séléctionné
                         del_user(conn, username, cur)
                         other=input("Remove another user ? Y/N :  ")
                         if other.lower()=='y':
+                            i=0
                             state==False
                         else:
                             return 0
                     else : #on ne peut supprimer que un patient en tant qu'admin
-                        print("Access denied")
+                        print("Unauthorized")
                         return 0
 
             

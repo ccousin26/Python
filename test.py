@@ -1,4 +1,12 @@
-import hashlib
-pwd2=input()
-pwd2=hashlib.sha256(pwd2.encode('utf-8')).hexdigest()
-print(pwd2)
+import datetime
+
+now = datetime.datetime.now()
+
+print(now)
+
+
+
+# get current date
+current_date = datetime.date.today()
+
+print(current_date)
