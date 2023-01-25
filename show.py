@@ -25,7 +25,8 @@ def show_table(conn, status, username_co):
             return 0
     else:
         mode=input("show table or only a user? user/table :  ")
-        loop=0
+        mode = mode.lower()
+        loop = 0
         match mode:
             case 'user' :
                 while loop<3:

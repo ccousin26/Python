@@ -22,9 +22,12 @@ def auth(conn):
 
             result = conn.execute("SELECT * FROM user WHERE username = ? AND password = ?", (username, pwd))
             if (len(result.fetchall()) != 0):
-                print("Authentification success")
                 cursor = conn.execute("SELECT status, username, date FROM user WHERE username = ? AND password = ?", (username, pwd))
                 status = cursor.fetchone()[0] 
+                if status == 'patient':
+                    print("Unauthorized")
+                    return False, None, None
+                print("Authentification success")
                 cursor = conn.execute("SELECT username FROM user WHERE username = ? AND password = ?", (username, pwd))
                 username_co = cursor.fetchone()[0]
                 cursor = conn.execute("SELECT date FROM user WHERE username = ? AND password = ?", (username, pwd))

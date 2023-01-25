@@ -52,7 +52,7 @@ try:
                     case '2' :
                         supp_user.supp(conn, status)
                     case '3' :
-                        edit_user.edit(conn, status)
+                        edit_user.edit(conn, status, username_co)
                     case '4' :
                         show.show_table(conn, status, username_co)
                     case '5' :

@@ -2,7 +2,7 @@ import getpass
 import hashlib
 import show
 
-def edit(conn, status): 
+def edit(conn, status, username_co): 
     '''
     edit : editer un utilisateur : modifier son username, first name, last name ou password
     conn : connexion sqlite3
@@ -11,7 +11,7 @@ def edit(conn, status):
     if status == 'admin' or status == 'sudo':
         data=input("Do you want to see db content before? : Y/N  ") #afficher la table
         if data.lower()=='y':
-            show.show_table(conn, status)
+            show.show_table(conn, status,username_co)
     print()
     print("EDIT A USER")
     print("Which user do you want to modify ?")
@@ -21,7 +21,6 @@ def edit(conn, status):
     resSql = req.fetchall()
     req = cur.execute("SELECT status FROM user WHERE username = ?", (username,))
     user_status = req.fetchall()
-
     if len(resSql) != 0:
         if status == 'patient':
             print("You haven't the right as patient.")
