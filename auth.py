@@ -15,27 +15,22 @@ def auth(conn):
         if i<3:
             print("AUTHENTIFICATION\n")
             
-            username=input("Username : ")
+            username_co=input("Username : ")
             pwd=getpass.getpass()
-            print("\n") 
+            print() 
             pwd=hashlib.sha256(pwd.encode('utf-8')).hexdigest()
 
-            result = conn.execute("SELECT * FROM user WHERE username = ? AND password = ?", (username, pwd))
+            result = conn.execute("SELECT * FROM user WHERE username = ? AND password = ?", (username_co, pwd))
             if (len(result.fetchall()) != 0):
-                cursor = conn.execute("SELECT status, username, date FROM user WHERE username = ? AND password = ?", (username, pwd))
-                status = cursor.fetchone()[0] 
+                cursor = conn.execute("SELECT status, username, date FROM user WHERE username = ? AND password = ?", (username_co, pwd))
+                status, username_co, date = cursor.fetchone()
+                print("Last user update : ", date)
                 if status == 'patient':
                     print("Unauthorized")
                     return False, None, None
                 print("Authentification success")
-                cursor = conn.execute("SELECT username FROM user WHERE username = ? AND password = ?", (username, pwd))
-                username_co = cursor.fetchone()[0]
-                cursor = conn.execute("SELECT date FROM user WHERE username = ? AND password = ?", (username, pwd))
-                date = cursor.fetchone()[0]
-                # print(status)
-                # print(username_co)
                 current_date = datetime.date.today()
-                print(current_date)
+                print("Login Date : ", current_date)
                 return True, status, username_co
             else:
                 print("Authentification failed\n")

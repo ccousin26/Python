@@ -17,26 +17,26 @@ try:
     print(status)
     print(username_co)
     if isConnected:
-        if status == 'patient':
+        if status == 'doctor':
             menu=None
-            while menu!='3':
+            while menu!='2':
                 print()
                 print("Actions :")
-                print ("1 - Edit user")
-                print ("2 - Show user table")
-                print ("3 - Logout")
+                print ("1 - Show user table")
+                print ("2 - Logout")
                 menu=input("Choose your number : ")
                 match menu:
                     case '1' :
-                        edit_user.edit(conn, status)
-                    case '2' :
                         show.show_table(conn, status, username_co)
-                    case '3' :
+                    case '2' :
                         conn.close()
                     case _:
                         print("Error")
         else:
             menu=None
+            if status == 'patient':
+                ("Access denied")
+                conn.close()
             while menu!='5':
                 print()
                 print("Actions :")

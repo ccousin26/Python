@@ -14,6 +14,8 @@ def create(conn, status):
     status_user = None
     if status == "patient":
         print("You can't create user as a patient.")
+    elif status == "doctor":
+        print("You can't create user as a doctor.")
     else:
         while(rep.lower() == "y" and status_user == None): #permet de récupérer la lettre, peut importe la majuscule ou non.
             if i<5:
@@ -22,11 +24,13 @@ def create(conn, status):
                 print("1 - sudo")
                 print("2 - admin")
                 print("3 - patient")
+                print("4 - doctor")
                 status_user = input("status number : ")
                 match status_user : 
                     case '1':
                         if status == 'sudo':
                             status_user = 'sudo'
+                            medical_data = None
                         else :
                             print("Unauthorized")
                             i+=1
@@ -34,12 +38,21 @@ def create(conn, status):
                     case '2':
                         if status == 'sudo':
                             status_user = 'admin'
+                            medical_data=None
                         else :
                             print("Unauthorized")
                             break
                     case '3':
                         if status == 'sudo' or status == 'admin':
                             status_user = 'patient'
+                            medical_data="Medical file"
+                        else :
+                            print("Unauthorized")
+                            break
+                    case '4':
+                        if status == 'sudo' or status == 'admin':
+                            status_user = 'doctor'
+                            medical_data="Patient list"
                         else :
                             print("Unauthorized")
                             break
@@ -49,20 +62,19 @@ def create(conn, status):
                 if status_user == None:
                     print('Error status is empty')
                     break
+                    
+                print("If you have a compound name, write everything attached")
+                print("Example : JeanMichel")
                 name = input("Name : ")
                 if name == '':
                     print('Error name is empty')
-                    break
                 lastname = input("Last name : ")
                 if lastname == '':
                     print('Error lastname is empty')
-                    break
+
                 x = name.isalpha()
                 y = lastname.isalpha()
-                print(name)
-                print(lastname)
                 if x == True and y == True :
-                    print('yessss')
                     username = name[0] + lastname #concatenation du prénom et nom.
                     #requete sql qui permet de selectionner le prénom du user en se basant sur son username. Si la requete aboutit, alors l'utilisateur existe déjà.
                     cur.execute("SELECT first_name FROM user WHERE username = ?", (username,)) 
@@ -82,8 +94,6 @@ def create(conn, status):
                 else:              
                     pwd = generatePassword(9)
                     print()
-                    print("Your password is : " + pwd)
-                    print()
                     print("---| Adding user |---")
                     print("Username :      ", username)
                     print("Name :          ", name)
@@ -92,11 +102,13 @@ def create(conn, status):
                     print("Status :        ", status_user)
                     date = datetime.date.today()
                     print("Creation Date : ", date)
-
+                    print("Medical data :  ", medical_data)
+                    print("---------------------")
+                    print()
                     pwd = hashlib.sha256(pwd.encode('utf-8')).hexdigest() #permet de hasher le pwd avant la sauvegarde dans la bd
                     resp=input("Add this user in the db ? Y/N : ")
                     if resp.lower() == 'y':
-                        cur.execute("INSERT INTO user VALUES(NULL,?,?,?,?,?,?)", (username,name,lastname,pwd,status_user,date)) #ajoute l'utilisateur à la db en passant en argument ses informations
+                        cur.execute("INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?)", (username,name,lastname,pwd,status_user,date,medical_data)) #ajoute l'utilisateur à la db en passant en argument ses informations
                         conn.commit() #envoyer la requete
                         print("USER ADD\n")
                         for row in cur.execute("SELECT * FROM user"): #affiche la table
