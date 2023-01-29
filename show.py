@@ -48,7 +48,10 @@ def show_table(conn, status, username_co):
                             loop=3
                     else:
                         print(user,"doesn't exist") 
-                        loop+=1      
+                        loop+=1
+                        if loop==3:
+                            print("Too many tries")   
+                            break   
 
             case 'table':
                 show_table = "SELECT * FROM user"

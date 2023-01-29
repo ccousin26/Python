@@ -38,3 +38,4 @@ SELECT * FROM user;
 
 SELECT status FROM user WHERE username = 'Admin' AND password = 'test';
 SELECT password from user;
+SELECT status from user where status = 'dzilz';

@@ -137,22 +137,40 @@ def edit(conn, status, username_co):
                         case '5' :
                             i=0
                             while i<3:
+                                print("STATUS")
+                                print("- sudo")
+                                print("- admin")
+                                print("- patient")
+                                print("- doctor")
                                 newStatus=input("Status : ")
                                 newStatus=newStatus.lower()
-                                resp=input("Add this status in the db ? Y/N : ")
-                                if resp.lower() == 'y': 
-                                    cur.execute("UPDATE user SET status = ? WHERE username = ?;", (newStatus, username))
-                                    conn.commit()                         
-                                    test=input("Other changes ? : Y/N  ")
-                                    i=3
-                                    if test.lower()=='y':
+                                if newStatus==None:
+                                    print("Error Status is empty")
+                                    break
+                                print(newStatus)
+                                if status=='admin' and newStatus=='sudo':
+                                    print("You can't choose sudo status if you're admin")
+                                    break
+                                if status=='admin' and newStatus=='admin':
+                                    print("As admin you can't manage other admins")
+                                    break
+                                if newStatus=='sudo' or newStatus=='admin' or newStatus=="patient" or newStatus=='doctor':
+                                    resp=input("Add this status in the db ? Y/N : ")
+                                    if resp.lower() == 'y': 
+                                        cur.execute("UPDATE user SET status = ? WHERE username = ?;", (newStatus, username))
+                                        conn.commit()                         
+                                        test=input("Other changes ? : Y/N  ")
                                         i=3
+                                        if test.lower()=='y':
+                                            i=3
+                                        else:
+                                            element='6'
                                     else:
-                                        show.show_table(conn, status)
-                                        element='6'
+                                        print("No change")
+                                        i=3
                                 else:
-                                    print("No change")
-                                    i=3
+                                    print("Incorrect Status")
+                                    break
                         case '6' :
                             print("EXIT")
                             element='6'
@@ -160,7 +178,7 @@ def edit(conn, status, username_co):
                         case _:
                             print("Error match/case")
     else:
-        print("Username", username, "not exist")
+        print("Username", username, "doesn't exist")
 
 
 

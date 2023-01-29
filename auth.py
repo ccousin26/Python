@@ -1,6 +1,5 @@
 import hashlib
 import getpass
-from datetime import *
 import datetime
 
 #TODO: voir en fonction du status si il peut ou non avoir accès à la db entière ou juste à ses informations personnels
@@ -24,11 +23,11 @@ def auth(conn):
             if (len(result.fetchall()) != 0):
                 cursor = conn.execute("SELECT status, username, date FROM user WHERE username = ? AND password = ?", (username_co, pwd))
                 status, username_co, date = cursor.fetchone()
-                print("Last user update : ", date)
                 if status == 'patient':
                     print("Unauthorized")
                     return False, None, None
                 print("Authentification success")
+                print("Last user update : ", date)
                 current_date = datetime.date.today()
                 print("Login Date : ", current_date)
                 return True, status, username_co

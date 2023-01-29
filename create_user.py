@@ -18,14 +18,16 @@ def create(conn, status):
         print("You can't create user as a doctor.")
     else:
         while(rep.lower() == "y" and status_user == None): #permet de récupérer la lettre, peut importe la majuscule ou non.
-            if i<5:
+            if i<3:
                 print("USER CREATION\n")
                 print("STATUS")
                 print("1 - sudo")
                 print("2 - admin")
                 print("3 - patient")
                 print("4 - doctor")
+                print("else - EXIT")
                 status_user = input("status number : ")
+                print()
                 match status_user : 
                     case '1':
                         if status == 'sudo':
@@ -57,7 +59,6 @@ def create(conn, status):
                             print("Unauthorized")
                             break
                     case _:
-                        print("error")
                         break
                 if status_user == None:
                     print('Error status is empty')
@@ -75,20 +76,23 @@ def create(conn, status):
                 x = name.isalpha()
                 y = lastname.isalpha()
                 if x == True and y == True :
-                    username = name[0] + lastname #concatenation du prénom et nom.
+                    username = name[0] + name[1] + lastname #concatenation du prénom et nom.
                     #requete sql qui permet de selectionner le prénom du user en se basant sur son username. Si la requete aboutit, alors l'utilisateur existe déjà.
-                    cur.execute("SELECT first_name FROM user WHERE username = ?", (username,)) 
+                    cur.execute("SELECT first_name, last_name FROM user WHERE username = ?", (username,)) 
                     data = cur.fetchall() #lance la requete.
                 else :
                     print("Error it's not just letters")
                     break
+
                 '''
                 fetchall retourne un tableau, en vérifiant la taille du tableau on sait alors si la requete à aboutit à un résultat non null.
                 '''
+                
                 if len(data) != 0: 
                     print("username", username, "already exist !")
+                    status_user=None
                     i+=1
-                    if i==5:
+                    if i==3:
                         print("Too many tries")
                         break
                 else:              
@@ -110,14 +114,26 @@ def create(conn, status):
                     if resp.lower() == 'y':
                         cur.execute("INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?)", (username,name,lastname,pwd,status_user,date,medical_data)) #ajoute l'utilisateur à la db en passant en argument ses informations
                         conn.commit() #envoyer la requete
-                        print("USER ADD\n")
-                        for row in cur.execute("SELECT * FROM user"): #affiche la table
-                            print(row)
-                        i=0
+                        print("----------| USER ADD |----------")
+                        
+                        data = cur.execute("SELECT * FROM user WHERE username = ?", (username,)) #affiche la table
+                        for row in data:
+                            print()
+                            print("Id:           ", row[0])
+                            print("Pseudo:       ", row[1])
+                            print("First Name:   ", row[2])
+                            print("Second Name:  ", row[3])
+                            print("Password :    ", row[4])
+                            print("Status :      ", row[5])
+                            print("Last update : ", row[6])
+                            print("Data :        ", row[7])
                     else:
-                        i=0
-                    break
-                
+                        rep=input("Do you want to create another user ? Y/N  : ")
+                        if rep.lower()=='y':
+                            i=0
+                            status_user=None
+                        else :
+                            return 0                
                     
 
 def generatePassword(pwdLen):
