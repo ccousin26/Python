@@ -136,7 +136,8 @@ def edit(conn, status, username_co):
                                         pwd_check=True
                                         resp=input("Add this password in the db ? Y/N : ")
                                         if resp.lower() == 'y':
-                                            cur.execute("UPDATE user SET password = ? WHERE username = ?;", (newPassword, username))
+                                            updated_passwd_date = datetime.datetime.today()
+                                            cur.execute("UPDATE user SET password = ?,updated_passwd_date=?,isPasswdNeedToChange=0 WHERE username = ?;", (newPassword,updated_passwd_date, username))#
                                             conn.commit()
                                             current_date = datetime.datetime.today()
                                             logging.info("[ %s ], %s, Password changed for %s", username_co, current_date, username)
@@ -179,7 +180,7 @@ def edit(conn, status, username_co):
                                 if newStatus=='sudo' or newStatus=='admin' or newStatus=="patient" or newStatus=='doctor':
                                     resp=input("Add this status in the db ? Y/N : ")
                                     if resp.lower() == 'y': 
-                                        cur.execute("UPDATE user SET status = ? WHERE username = ?;", (newStatus, username))
+                                        cur.execute("UPDATE user SET status = ? WHERE username = ?;", (newStatus, username))#update le statu
                                         conn.commit()       
                                         current_date = datetime.datetime.today()
                                         logging.info("[ %s ], %s, Status changed for %s", username_co, current_date, username)

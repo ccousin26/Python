@@ -129,12 +129,14 @@ def create(conn, status, username_co):
                     print("Medical data :  ", medical_data)
                     print("---------------------------")
                     print()
-                    current_date = datetime.datetime.today()
+                    current_date = datetime.datetime.today()# pk t'as fait ca?
                     logging.info('[ %s ], %s, User %s generated', username_co, current_date, username)
                     pwd = hashlib.sha256(pwd.encode('utf-8')).hexdigest() #permet de hasher le pwd avant la sauvegarde dans la bd
+                    #updated_passwd_date= datetime.today()
+                    isPasswdNeedToChange = 0
                     resp=input("Add this user in the db ? Y/N : ")
                     if resp.lower() == 'y':
-                        cur.execute("INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?)", (username,name,lastname,pwd,status_user,date,medical_data)) #ajoute l'utilisateur à la db en passant en argument ses informations
+                        cur.execute("INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?,?,?)", (username,name,lastname,pwd,status_user,date,medical_data,current_date,isPasswdNeedToChange)) #ajoute l'utilisateur à la db en passant en argument ses informations
                         conn.commit() #envoyer la requete
                         current_date = datetime.datetime.today()
                         logging.info('[ %s ], %s, User %s add in db.sqlite', username_co, current_date, username)

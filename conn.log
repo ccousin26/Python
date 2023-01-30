@@ -126,3 +126,20 @@ INFO:root:[ Sudo ], 2023-01-30 17:04:18.875366, Status changed for Sudo
 WARNING:root:[ Sudo ], 2023-01-30 17:04:32.976440 Connection Attempt 
 WARNING:root:[ Sudo ], 2023-01-30 17:04:32.976440, Authentification failed
 INFO:root:[ None ], 2023-01-30 17:04:32.980427, Disconnected from db.sqlite
+WARNING:root:[ marrar ], 2023-01-30 23:22:09.255882, Connection Attempt 
+WARNING:root:[ marrar ], 2023-01-30 23:22:09.255882, Authentification Failed
+WARNING:root:[ marrar ], 2023-01-30 23:22:23.745609, Connection Attempt 
+WARNING:root:[ marrar ], 2023-01-30 23:22:23.745609, Authentification Failed
+WARNING:root:[ MARRAR ], 2023-01-30 23:22:52.611190 Connection Attempt 
+WARNING:root:[ MARRAR ], 2023-01-30 23:22:52.611190, Authentification failed
+WARNING:root:[ MARRAR ], 2023-01-30 23:24:45.887935 Connection Attempt 
+WARNING:root:[ MARRAR ], 2023-01-30 23:24:45.887935, Authentification failed
+INFO:root:[ None ], 2023-01-30 23:24:45.889930, Disconnected from db.sqlite
+WARNING:root:[ Admin1 ], 2023-01-30 23:26:11.558824, Connection Attempt 
+WARNING:root:[ Admin1 ], 2023-01-30 23:26:11.558824, Authentification Failed
+INFO:root:[ Admin1 ], 2023-01-30 23:26:52.136688, Authentification Success
+INFO:root:[ Admin1 ], 2023-01-30 23:26:52.136688, Connection to db.sqlite
+INFO:root:[ Admin1 ], 2023-01-30 23:28:18.231898, Authentification Success
+INFO:root:[ Admin1 ], 2023-01-30 23:28:18.231898, Connection to db.sqlite
+DEBUG:root:[ Admin1 ], 2023-01-30 23:28:29.524241, Action edit_user
+DEBUG:root:[ Admin1 ], 2023-01-30 23:28:35.326300, Show table before edit_user
