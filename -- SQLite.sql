@@ -28,6 +28,8 @@ VALUES('Sudo','sudo', 'sudo','9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd1
 ---------------- POUR TESTER / MDP POUR CHAQUE USER : test -----------------------
 
 SELECT * FROM user; 
+
+
 -- afficher la table user
 
 -- Requetes test
@@ -36,6 +38,6 @@ SELECT * FROM user;
 --UPDATE user SET first_name = 'Michel' WHERE username = 'Clem';
 --SELECT * FROM user WHERE username = 'Clem'; 
 
-SELECT status FROM user WHERE username = 'Admin' AND password = 'test';
-SELECT password from user;
-SELECT status from user where status = 'dzilz';
+-- SELECT status FROM user WHERE username = 'Admin' AND password = 'test';
+-- SELECT password from user;
+-- SELECT status from user where status = 'dzilz';

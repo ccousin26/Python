@@ -182,7 +182,10 @@ def edit(conn, status, username_co):
                                         cur.execute("UPDATE user SET status = ? WHERE username = ?;", (newStatus, username))
                                         conn.commit()       
                                         current_date = datetime.datetime.today()
-                                        logging.info("[ %s ], %s, Status changed for %s", username_co, current_date, username)                  
+                                        logging.info("[ %s ], %s, Status changed for %s", username_co, current_date, username)
+                                        if username == username_co:
+                                            print("Your account has been modified, you will be disconnected")
+                                            exit()        
                                         test=input("Other changes ? : Y/N  ")
                                         i=3
                                         if test.lower()=='y':
@@ -200,7 +203,7 @@ def edit(conn, status, username_co):
                         case '6' :
                             print("EXIT")
                             current_date = datetime.datetime.today()
-                            logging.debug("[ %s ], %s, Exit edit mode", username_co, current_date, username)
+                            logging.debug("[ %s ], %s, Exit edit mode", username_co, current_date)
                             element='6'
                             break
                         case _:

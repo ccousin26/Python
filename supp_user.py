@@ -42,7 +42,7 @@ def supp(conn, status, username_co):
                     i=0
                 else:
                     return 0
-            elif data[0][-1] == "patient": #on récupere le dernier element de la requete sql qui nous retourne toutes les informations de l'utilisateur séléctionné
+            elif data[0][-1] == "patient" or data[0][-1]=="doctor": #on récupere le dernier element de la requete sql qui nous retourne toutes les informations de l'utilisateur séléctionné
                 del_user(conn, username, cur, username_co)
                 other=input("Remove another user ? Y/N :  ")
                 if other.lower()=='y':

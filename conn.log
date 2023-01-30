@@ -1,0 +1,128 @@
+WARNING:root:[ zjd ], 2023-01-30 16:23:29.841067, Connection Attempt 
+WARNING:root:[ zjd ], 2023-01-30 16:23:29.841067, Authentification Failed
+WARNING:root:[ zkld ], 2023-01-30 16:23:31.404360, Connection Attempt 
+WARNING:root:[ zkld ], 2023-01-30 16:23:31.404360, Authentification Failed
+WARNING:root:[ zkdj ], 2023-01-30 16:23:32.978274, Connection Attempt 
+WARNING:root:[ zkdj ], 2023-01-30 16:23:32.978274, Authentification Failed
+INFO:root:[ None ], 2023-01-30 16:23:32.985254, Disconnected from db.sqlite
+INFO:root:[ Admin1 ], 2023-01-30 16:24:14.860389, Authentification Success
+INFO:root:[ Admin1 ], 2023-01-30 16:24:14.860389, Connection to db.sqlite
+WARNING:root:[ Admin2 ], 2023-01-30 16:24:39.367351, Connection Attempt 
+WARNING:root:[ Admin2 ], 2023-01-30 16:24:39.367351, Authentification Failed
+INFO:root:[ Admin2 ], 2023-01-30 16:24:43.123623, Authentification Success
+INFO:root:[ Admin2 ], 2023-01-30 16:24:43.123623, Connection to db.sqlite
+DEBUG:root:[ Admin2 ], 2023-01-30 16:24:44.595058, Action create_user
+WARNING:root:[ Admin2 ], 2023-01-30 16:24:48.218041, Sudo creation not allowed
+DEBUG:root:[ Admin2 ], 2023-01-30 16:24:50.397629, Action create_user
+WARNING:root:[ Admin2 ], 2023-01-30 16:24:53.799305, Admin creation not allowed
+DEBUG:root:[ Admin2 ], 2023-01-30 16:24:55.904658, Action create_user
+INFO:root:[ Admin2 ], 2023-01-30 16:25:17.133009, User Patient generated
+INFO:root:[ Admin2 ], 2023-01-30 16:25:20.075002, User Patient add in db.sqlite
+DEBUG:root:[ Admin2 ], 2023-01-30 16:25:50.321433, Action create_user
+INFO:root:[ Admin2 ], 2023-01-30 16:25:59.605297, User Docteur generated
+INFO:root:[ Admin2 ], 2023-01-30 16:26:01.339618, User Docteur add in db.sqlite
+DEBUG:root:[ Admin2 ], 2023-01-30 16:26:10.594300, Action edit_user
+INFO:root:[ Admin2 ], 2023-01-30 16:26:20.175423, Change request for user Docteur
+WARNING:root:[ Admin2 ], 2023-01-30 16:26:20.177419, Admin doesn't have this edit rights
+DEBUG:root:[ Admin2 ], 2023-01-30 16:26:30.691784, Action edit_user
+DEBUG:root:[ Admin2 ], 2023-01-30 16:26:34.505953, Show table before edit_user
+INFO:root:[ Admin2 ], 2023-01-30 16:26:55.889891, Change request for user Patient
+INFO:root:[ Admin2 ], 2023-01-30 16:27:08.566035, Firstname changed for Patient
+DEBUG:root:[ Admin2 ], 2023-01-30 16:27:13.459978, Action show_table
+ERROR:root:[ Admin2 ], 2023-01-30 16:27:18.989715, Action not found
+DEBUG:root:[ Admin2 ], 2023-01-30 16:27:35.050703, Action logout
+INFO:root:[ Admin2 ], 2023-01-30 16:27:35.053695, Disconnected from db.sqlite
+INFO:root:[ Admin1 ], 2023-01-30 16:42:18.353597, Authentification Success
+INFO:root:[ Admin1 ], 2023-01-30 16:42:18.353597, Connection to db.sqlite
+DEBUG:root:[ Admin1 ], 2023-01-30 16:42:20.540099, Action create_user
+DEBUG:root:[ Admin1 ], 2023-01-30 16:42:25.529072, Action create_user
+WARNING:root:[ Admin1 ], 2023-01-30 16:42:28.819620, Sudo creation not allowed
+DEBUG:root:[ Admin1 ], 2023-01-30 16:42:33.342390, Action create_user
+WARNING:root:[ Admin1 ], 2023-01-30 16:42:35.844462, Admin creation not allowed
+DEBUG:root:[ Admin1 ], 2023-01-30 16:42:38.292583, Action create_user
+WARNING:root:[ Admin1 ], 2023-01-30 16:42:41.996500, Sudo creation not allowed
+DEBUG:root:[ Admin1 ], 2023-01-30 16:42:45.167131, Action create_user
+INFO:root:[ Admin1 ], 2023-01-30 16:42:52.266476, User tetest generated
+INFO:root:[ Admin1 ], 2023-01-30 16:42:54.555192, User generated not add in db.sqlite
+INFO:root:[ Admin1 ], 2023-01-30 16:42:57.455552, New user creation
+INFO:root:[ Admin1 ], 2023-01-30 16:43:06.025628, User Patient generated
+INFO:root:[ Admin1 ], 2023-01-30 16:43:07.900420, User Patient add in db.sqlite
+ERROR:root:[ Admin1 ], 2023-01-30 16:45:13.259657, Action not found
+DEBUG:root:[ Admin1 ], 2023-01-30 16:46:02.153348, Action create_user
+INFO:root:[ Admin1 ], 2023-01-30 16:46:25.598611, User Doteur generated
+INFO:root:[ Admin1 ], 2023-01-30 16:46:27.371589, User generated not add in db.sqlite
+INFO:root:[ Admin1 ], 2023-01-30 16:46:29.900014, New user creation
+INFO:root:[ Admin1 ], 2023-01-30 16:46:35.095568, User lkzlij generated
+INFO:root:[ Admin1 ], 2023-01-30 16:46:36.465287, User lkzlij add in db.sqlite
+DEBUG:root:[ Admin1 ], 2023-01-30 16:46:40.443347, Action supp_user
+DEBUG:root:[ Admin1 ], 2023-01-30 16:46:41.768744, Show table/user before supp_user
+INFO:root:[ Admin1 ], 2023-01-30 16:47:13.630456, Request supp_user for user lkzlij
+ERROR:root:[ Admin1 ], 2023-01-30 16:47:13.631457, Attempt to supp user lkzlij >> Unauthorized
+INFO:root:[ Admin3 ], 2023-01-30 16:48:26.098955, Authentification Success
+INFO:root:[ Admin3 ], 2023-01-30 16:48:26.098955, Connection to db.sqlite
+DEBUG:root:[ Admin3 ], 2023-01-30 16:48:27.352299, Action supp_user
+DEBUG:root:[ Admin3 ], 2023-01-30 16:48:28.869378, Show table/user before supp_user
+INFO:root:[ Admin3 ], 2023-01-30 16:48:35.239502, Request supp_user for user lkzlij
+INFO:root:[ Admin3 ], 2023-01-30 16:48:42.192792, User lkzlij deleted from db.sqlite
+INFO:root:[ Admin3 ], 2023-01-30 16:48:50.804216, Request supp_user for user Sudo
+ERROR:root:[ Admin3 ], 2023-01-30 16:48:50.807207, Attempt to supp user Sudo >> Unauthorized
+DEBUG:root:[ Admin3 ], 2023-01-30 16:48:53.511647, Action supp_user
+INFO:root:[ Admin3 ], 2023-01-30 16:48:59.610849, Request supp_user for user Admin2
+ERROR:root:[ Admin3 ], 2023-01-30 16:48:59.612839, Attempt to supp user Admin2 >> Unauthorized
+DEBUG:root:[ Admin3 ], 2023-01-30 16:49:02.905119, Action supp_user
+DEBUG:root:[ Admin3 ], 2023-01-30 16:49:04.409087, Show table/user before supp_user
+INFO:root:[ Admin3 ], 2023-01-30 16:49:07.049591, Request supp_user for user Patient
+INFO:root:[ Admin3 ], 2023-01-30 16:49:09.516387, Request to supp_user abort 
+DEBUG:root:[ Admin3 ], 2023-01-30 16:49:18.835238, Action show_table
+DEBUG:root:[ Admin3 ], 2023-01-30 16:50:58.288169, Action edit_user
+INFO:root:[ Admin3 ], 2023-01-30 16:51:27.136681, Change request for user Admin3
+WARNING:root:[ Admin3 ], 2023-01-30 16:51:27.156627, Admin doesn't have this edit rights
+DEBUG:root:[ Admin3 ], 2023-01-30 16:51:41.381998, Action logout
+INFO:root:[ Admin3 ], 2023-01-30 16:51:41.383990, Disconnected from db.sqlite
+INFO:root:[ Sudo ], 2023-01-30 16:51:50.453850, Authentification Success
+INFO:root:[ Sudo ], 2023-01-30 16:51:50.453850, Connection to db.sqlite
+DEBUG:root:[ Sudo ], 2023-01-30 16:51:52.299145, Action edit_user
+INFO:root:[ Sudo ], 2023-01-30 16:51:57.090509, Change request for user Sudo
+INFO:root:[ Sudo ], 2023-01-30 16:52:04.229072, Status changed for Sudo
+DEBUG:root:[ Sudo ], 2023-01-30 16:54:33.869750, Action edit_user
+INFO:root:[ Sudo ], 2023-01-30 16:54:40.755397, Change request for user Sudo
+WARNING:root:[ Sdo ], 2023-01-30 16:54:56.545200, Connection Attempt 
+WARNING:root:[ Sdo ], 2023-01-30 16:54:56.545200, Authentification Failed
+WARNING:root:[ Sudo ], 2023-01-30 16:54:59.497918 Connection Attempt 
+WARNING:root:[ Sudo ], 2023-01-30 16:54:59.497918, Authentification failed
+INFO:root:[ None ], 2023-01-30 16:54:59.506895, Disconnected from db.sqlite
+INFO:root:[ Sudo ], 2023-01-30 16:55:31.176582, Authentification Success
+INFO:root:[ Sudo ], 2023-01-30 16:55:31.176582, Connection to db.sqlite
+DEBUG:root:[ Sudo ], 2023-01-30 16:55:35.809462, Action edit_user
+INFO:root:[ Sudo ], 2023-01-30 16:55:39.431839, Change request for user Sudo
+DEBUG:root:[ Sudo ], 2023-01-30 16:55:46.219171, Exit edit mode
+DEBUG:root:[ Sudo ], 2023-01-30 16:55:50.131411, Action edit_user
+INFO:root:[ Sudo ], 2023-01-30 16:55:53.506341, Change request for user Sudo
+INFO:root:[ Sudo ], 2023-01-30 16:56:01.127884, Status changed for Sudo
+DEBUG:root:[ Sudo ], 2023-01-30 16:56:04.140174, Action create_user
+INFO:root:[ Sudo ], 2023-01-30 16:56:20.211970, User tetest generated
+INFO:root:[ Sudo ], 2023-01-30 16:56:36.939147, User tetest add in db.sqlite
+DEBUG:root:[ Sudo ], 2023-01-30 16:56:40.222775, Action supp_user
+DEBUG:root:[ Sudo ], 2023-01-30 16:56:41.537473, Show table/user before supp_user
+INFO:root:[ Sudo ], 2023-01-30 16:56:46.469246, Request supp_user for user tetest
+INFO:root:[ Sudo ], 2023-01-30 16:56:51.348921, User tetest deleted from db.sqlite
+DEBUG:root:[ Sudo ], 2023-01-30 16:56:55.363742, Action show_table
+DEBUG:root:[ Sudo ], 2023-01-30 16:57:02.978107, Action logout
+INFO:root:[ Sudo ], 2023-01-30 16:57:02.981099, Disconnected from db.sqlite
+INFO:root:[ Sudo ], 2023-01-30 17:01:57.739419, Authentification Success
+INFO:root:[ Sudo ], 2023-01-30 17:01:57.739419, Connection to db.sqlite
+DEBUG:root:[ Sudo ], 2023-01-30 17:02:00.043965, Action edit_user
+INFO:root:[ Sudo ], 2023-01-30 17:02:04.910807, Change request for user Sudo
+INFO:root:[ Sudo ], 2023-01-30 17:02:20.886225, Status changed for Sudo
+DEBUG:root:[ Sudo ], 2023-01-30 17:02:34.108254, Exit edit mode
+DEBUG:root:[ Sudo ], 2023-01-30 17:02:36.151857, Action logout
+INFO:root:[ Sudo ], 2023-01-30 17:02:36.153853, Disconnected from db.sqlite
+INFO:root:[ Sudo ], 2023-01-30 17:03:45.715494, Authentification Success
+INFO:root:[ Sudo ], 2023-01-30 17:03:45.715494, Connection to db.sqlite
+DEBUG:root:[ Sudo ], 2023-01-30 17:03:47.948476, Action edit_user
+DEBUG:root:[ Sudo ], 2023-01-30 17:03:49.527710, Show table before edit_user
+INFO:root:[ Sudo ], 2023-01-30 17:04:04.248360, Change request for user Sudo
+INFO:root:[ Sudo ], 2023-01-30 17:04:18.875366, Status changed for Sudo
+WARNING:root:[ Sudo ], 2023-01-30 17:04:32.976440 Connection Attempt 
+WARNING:root:[ Sudo ], 2023-01-30 17:04:32.976440, Authentification failed
+INFO:root:[ None ], 2023-01-30 17:04:32.980427, Disconnected from db.sqlite

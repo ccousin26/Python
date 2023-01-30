@@ -118,7 +118,7 @@ def create(conn, status, username_co):
                 else:              
                     pwd = generatePassword(9)
                     print()
-                    print("---| Adding user |---")
+                    print("------| Adding user |------")
                     print("Username :      ", username)
                     print("Name :          ", name)
                     print("Last name :     ", lastname)
@@ -127,7 +127,7 @@ def create(conn, status, username_co):
                     date = datetime.date.today()
                     print("Creation Date : ", date)
                     print("Medical data :  ", medical_data)
-                    print("---------------------")
+                    print("---------------------------")
                     print()
                     current_date = datetime.datetime.today()
                     logging.info('[ %s ], %s, User %s generated', username_co, current_date, username)
@@ -138,11 +138,10 @@ def create(conn, status, username_co):
                         conn.commit() #envoyer la requete
                         current_date = datetime.datetime.today()
                         logging.info('[ %s ], %s, User %s add in db.sqlite', username_co, current_date, username)
-
-                        print("----------| USER ADD |----------")
+                        print()
+                        print("------| USER ADD |------")
                         data = cur.execute("SELECT * FROM user WHERE username = ?", (username,)) #affiche la table
                         for row in data:
-                            print()
                             print("Id:           ", row[0])
                             print("Pseudo:       ", row[1])
                             print("First Name:   ", row[2])
@@ -151,6 +150,8 @@ def create(conn, status, username_co):
                             print("Status :      ", row[5])
                             print("Last update : ", row[6])
                             print("Data :        ", row[7])
+                        print("---------------------------")
+                        print()
                     else:
                         current_date = datetime.datetime.today()
                         logging.info('[ %s ], %s, User generated not add in db.sqlite', username_co, current_date)
