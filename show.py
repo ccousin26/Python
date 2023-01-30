@@ -1,3 +1,6 @@
+import datetime
+import logging
+
 def show_table(conn, status, username_co):
     '''
     show(): fonction permettant d'afficher la table user ou un user en particulier
@@ -6,6 +9,8 @@ def show_table(conn, status, username_co):
     cursor = conn.cursor()
 
     if status == 'patient':
+        current_date = datetime.datetime.today()
+        logging.error("[ %s ], %s, Attempt to change an unknown user >> %s", username_co, current_date, username_co)
         print("access unauthorized")
         return 0
     else:

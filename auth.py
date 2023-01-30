@@ -9,7 +9,7 @@ def auth(conn):
     '''
     auth(): fonction permettant de s'authentifier avant d'avoir accès au contenu de la bd
     '''
-    #logging.basicConfig(filename='conn.log', encoding='utf-8', level=logging.DEBUG)
+    logging.basicConfig(filename='conn.log', encoding='utf-8', level=logging.DEBUG)
 
     rep=input("Do you want to authentificate ? Y/N : ")
     i=0

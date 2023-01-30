@@ -1,6 +1,8 @@
 import getpass
 import hashlib
 import show
+import logging
+import datetime
 
 def edit(conn, status, username_co): 
     '''
@@ -11,12 +13,16 @@ def edit(conn, status, username_co):
     if status == 'admin' or status == 'sudo':
         data=input("Do you want to see db content before? : Y/N  ") #afficher la table
         if data.lower()=='y':
+            current_date = datetime.datetime.today()
+            logging.debug('[ %s ], %s, Show table before edit_user', username_co, current_date)
             show.show_table(conn, status,username_co)
     print()
     print("EDIT A USER")
     print("Which user do you want to modify ?")
 
     username=input("Username : ")   
+    current_date = datetime.datetime.today()
+    logging.info('[ %s ], %s, Change request for user %s', username_co, current_date, username)
     req = cur.execute("SELECT * FROM user WHERE username = ?", (username,)) #requete sql permettant de retrouver la ligne correspondant au username dans la bd
     resSql = req.fetchall()
     req = cur.execute("SELECT status FROM user WHERE username = ?", (username,))
@@ -24,8 +30,12 @@ def edit(conn, status, username_co):
     if len(resSql) != 0:
         if status == 'patient':
             print("You haven't the right as patient.")
+            current_date = datetime.datetime.today()
+            logging.warning("[ %s ], %s, Patient doesn't have edit rights", username_co, current_date)
             return 0
         if status == 'admin' and user_status[0][-1] != 'patient':
+            current_date = datetime.datetime.today()
+            logging.warning("[ %s ], %s, Admin doesn't have this edit rights", username_co, current_date)
             print("You can only edit patient user status")
             return 0
         else:
@@ -60,6 +70,8 @@ def edit(conn, status, username_co):
                                     if resp.lower() == 'y':
                                         cur.execute("UPDATE user SET username = ? WHERE username = ?;", (newUsername, username))
                                         conn.commit()
+                                        current_date = datetime.datetime.today()
+                                        logging.info("[ %s ], %s, Username changed for %s", username_co, current_date, username)
                                         print("Modification add \n")
                                         i=3
                                         test=input("Other changes ? : Y/N  ")
@@ -78,6 +90,8 @@ def edit(conn, status, username_co):
                                 if resp.lower() == 'y':
                                     cur.execute("UPDATE user SET first_name = ? WHERE username = ?;", (newFirstName, username))
                                     conn.commit()
+                                    current_date = datetime.datetime.today()
+                                    logging.info("[ %s ], %s, Firstname changed for %s", username_co, current_date, username)
                                     test=input("Other changes ? : Y/N  ")
                                     i=3
                                     if test.lower()=='y':
@@ -95,7 +109,9 @@ def edit(conn, status, username_co):
                                 resp=input("Add this last name in the db ? Y/N : ")
                                 if resp.lower() == 'y': 
                                     cur.execute("UPDATE user SET last_name = ? WHERE username = ?;", (newLastName, username))
-                                    conn.commit()                         
+                                    conn.commit()      
+                                    current_date = datetime.datetime.today()
+                                    logging.info("[ %s ], %s, Lastname changed for %s", username_co, current_date, username)                   
                                     test=input("Other changes ? : Y/N  ")
                                     i=3
                                     if test.lower()=='y':
@@ -122,6 +138,8 @@ def edit(conn, status, username_co):
                                         if resp.lower() == 'y':
                                             cur.execute("UPDATE user SET password = ? WHERE username = ?;", (newPassword, username))
                                             conn.commit()
+                                            current_date = datetime.datetime.today()
+                                            logging.info("[ %s ], %s, Password changed for %s", username_co, current_date, username)
                                             test=input("Other changes ? : Y/N  ")
                                             if test.lower()=='y':
                                                 continue
@@ -129,10 +147,14 @@ def edit(conn, status, username_co):
                                                 element='6'
                                     else:
                                         print("Incorrect password")
+                                        current_date = datetime.datetime.today()
+                                        logging.warning("[ %s ], %s, Attempt to change password for %s >> failed", username_co, current_date, username)
                                         print()
                                         i+=1
                                         if i==3:
                                             print("Too many tries")
+                                            current_date = datetime.datetime.today()
+                                            logging.eroor("[ %s ], %s,  Attempt to change password for %s >> failed, too many tries", username_co, current_date, username)
                                             break
                         case '5' :
                             i=0
@@ -158,7 +180,9 @@ def edit(conn, status, username_co):
                                     resp=input("Add this status in the db ? Y/N : ")
                                     if resp.lower() == 'y': 
                                         cur.execute("UPDATE user SET status = ? WHERE username = ?;", (newStatus, username))
-                                        conn.commit()                         
+                                        conn.commit()       
+                                        current_date = datetime.datetime.today()
+                                        logging.info("[ %s ], %s, Status changed for %s", username_co, current_date, username)                  
                                         test=input("Other changes ? : Y/N  ")
                                         i=3
                                         if test.lower()=='y':
@@ -170,15 +194,24 @@ def edit(conn, status, username_co):
                                         i=3
                                 else:
                                     print("Incorrect Status")
+                                    current_date = datetime.datetime.today()
+                                    logging.info("[ %s ], %s, Attempt to change status for %s >> failed", username_co, current_date, username)
                                     break
                         case '6' :
                             print("EXIT")
+                            current_date = datetime.datetime.today()
+                            logging.debug("[ %s ], %s, Exit edit mode", username_co, current_date, username)
                             element='6'
                             break
                         case _:
-                            print("Error match/case")
+                            print("Error match/cases")
+                            current_date = datetime.datetime.today()
+                            logging.error("[ %s ], %s, Error match/cases", username_co, current_date)
     else:
+        current_date = datetime.datetime.today()
+        logging.error("[ %s ], %s, Attempt to change an unknown user >> %s", username_co, current_date, username)
         print("Username", username, "doesn't exist")
+        
 
 
 
