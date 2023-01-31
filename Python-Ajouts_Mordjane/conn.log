@@ -1,0 +1,36 @@
+INFO:root:[ Sudo ], 2023-01-31 16:32:29.372795, Authentification Success
+INFO:root:[ Sudo ], 2023-01-31 16:32:29.372795, Connection to db.sqlite
+INFO:root:[ Sudo ], 2023-01-31 16:42:46.304589, Authentification Success
+INFO:root:[ Sudo ], 2023-01-31 16:42:46.304589, Connection to db.sqlite
+DEBUG:root:[ Sudo ], 2023-01-31 16:42:47.885774, Action logout
+INFO:root:[ Sudo ], 2023-01-31 16:42:47.886772, Disconnected from db.sqlite
+INFO:root:[ Sudo ], 2023-01-31 16:42:54.002573, Authentification Success
+INFO:root:[ Sudo ], 2023-01-31 16:42:54.002573, Connection to db.sqlite
+INFO:root:[ Sudo ], 2023-01-31 16:46:36.373399, Authentification Success
+INFO:root:[ Sudo ], 2023-01-31 16:46:36.373399, Connection to db.sqlite
+INFO:root:[ Sudo ], 2023-01-31 16:47:34.827360, Authentification Success
+INFO:root:[ Sudo ], 2023-01-31 16:47:34.827360, Connection to db.sqlite
+INFO:root:[ Sudo ], 2023-01-31 17:09:53.083658, Authentification Success
+INFO:root:[ Sudo ], 2023-01-31 17:09:53.083658, Connection to db.sqlite
+INFO:root:[ Sudo ], 2023-01-31 17:10:18.260795, Authentification Success
+INFO:root:[ Sudo ], 2023-01-31 17:10:18.260795, Connection to db.sqlite
+INFO:root:[ Sudo ], 2023-01-31 17:16:04.089234, Authentification Success
+INFO:root:[ Sudo ], 2023-01-31 17:16:04.089234, Connection to db.sqlite
+WARNING:root:[ Admin ], 2023-01-31 17:55:47.842758, Connection Attempt 
+WARNING:root:[ Admin ], 2023-01-31 17:55:47.842758, Authentification Failed
+INFO:root:[ Admin1 ], 2023-01-31 17:55:53.055521, Authentification Success
+INFO:root:[ Admin1 ], 2023-01-31 17:55:53.055521, Connection to db.sqlite
+INFO:root:[ Admin1 ], 2023-01-31 17:55:53.075167, Password has expired for Admin1
+INFO:root:[ Admin1 ], 2023-01-31 17:55:53.080856, Password update request for Admin1
+INFO:root:[ Admin1 ], 2023-01-31 17:56:03.464136, Password updated for Admin1
+INFO:root:[ Admin1 ], 2023-01-31 18:00:17.492895, Authentification Success
+INFO:root:[ Admin1 ], 2023-01-31 18:00:17.492895, Connection to db.sqlite
+ERROR:root:[ Admin1 ], 2023-01-31 18:00:17.496884, Connection failed
+INFO:root:[ Admin1 ], 2023-01-31 18:12:48.578045, Authentification Success
+INFO:root:[ Admin1 ], 2023-01-31 18:12:48.578045, Connection to db.sqlite
+INFO:root:[ Admin1 ], 2023-01-31 18:15:08.831573, Authentification Success
+INFO:root:[ Admin1 ], 2023-01-31 18:15:08.831573, Connection to db.sqlite
+INFO:root:[ Admin1 ], 2023-01-31 18:15:22.002783, Authentification Success
+INFO:root:[ Admin1 ], 2023-01-31 18:15:22.002783, Connection to db.sqlite
+INFO:root:[ Admin1 ], 2023-01-31 18:16:16.193423, Authentification Success
+INFO:root:[ Admin1 ], 2023-01-31 18:16:16.193423, Connection to db.sqlite
