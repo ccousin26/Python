@@ -18,12 +18,12 @@ CREATE TABLE IF NOT EXISTS user (
 );
 -- insertion des valeurs de chaque colonne d'un user
 INSERT INTO user (username,first_name, last_name, password, status, date, medical_files,updated_passwd_date,isPasswdNeedTochange) 
-VALUES('Sudo','sudo', 'sudo','9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08','sudo','2023-01-25', NULL,'2022-01-31 15:31:16.133494',0),
+VALUES('Sudo','sudo', 'sudo','9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08','sudo','2023-01-25', NULL,'2023-01-31 15:31:16.133494',0),
 ('Admin1','admin', 'admin','9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08','admin','2023-01-25',NULL,'2022-01-31 15:31:16.133494',0),
 ('Admin2','admin', 'admin','9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08','admin','2023-01-25',NULL,'2023-01-31 15:31:16.133494',0),
 ('Admin3','admin', 'admin','9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08','admin','2023-01-25',NULL,'2023-01-31 15:31:16.133494',0),
 ('Admin4','admin', 'admin','9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08','admin','2023-01-25',NULL,'2023-01-31 15:31:16.133494',0),
-('CCOUSIN','Clemence', 'COUSIN','9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 'patient','2023-01-25', 'medical file','2023-01-31 15:31:16.133494',0),
+('CCOUSIN','Clemence', 'COUSIN','9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 'patient','2023-01-25', 'medical file','2022-01-31 15:31:16.133494',0),
 ('MARRAR','Mordjane', 'ARRAR','9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 'patient','2022-01-25', 'medical file','2023-01-31 15:31:16.133494',1),
 ('Dr','John', 'SMITH','9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 'doctor','2023-01-25','patient list','2023-01-31 15:31:16.133494',0);
 

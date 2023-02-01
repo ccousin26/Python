@@ -36,7 +36,7 @@ def edit(conn, status, username_co):
         if status == 'admin' and user_status[0][-1] != 'patient':
             current_date = datetime.datetime.today()
             logging.warning("[ %s ], %s, Admin doesn't have this edit rights", username_co, current_date)
-            print("You can only edit patient user status")
+            print("You doesn't have this rights")
             return 0
         else:
             element=None
