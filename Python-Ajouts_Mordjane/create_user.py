@@ -16,11 +16,14 @@ def create(conn, status, username_co):
         print("You can't create user as a patient.")
         current_date = datetime.datetime.today()
         logging.warning('[ %s ], %s, Patient in create_user, access denied', username_co, current_date)
+        exit()
+    #Patients non authorisés ici, déconnexion
 
     elif status == "doctor":
         print("You can't create user as a doctor.")
         current_date = datetime.datetime.today()
         logging.warning('[ %s ], %s, Doctor in create_user, access denied', username_co, current_date)
+    #Seuls les admins ont les droits de modifications
     else:
         while(rep.lower() == "y" and status_user == None): #permet de récupérer la lettre, peut importe la majuscule ou non.
             if i<3:
@@ -31,6 +34,7 @@ def create(conn, status, username_co):
                 print("3 - patient")
                 print("4 - doctor")
                 print("else - EXIT")
+                #Menu de status possible
                 status_user = input("status number : ")
                 print()
                 match status_user : 
@@ -38,6 +42,7 @@ def create(conn, status, username_co):
                         if status == 'sudo':
                             status_user = 'sudo'
                             medical_data = None
+                            #Seul un sudo peut créer un sudo
                         else :
                             current_date = datetime.datetime.today()
                             logging.warning('[ %s ], %s, Sudo creation not allowed', username_co, current_date)
@@ -48,6 +53,7 @@ def create(conn, status, username_co):
                         if status == 'sudo':
                             status_user = 'admin'
                             medical_data=None
+                            #Seul un sudo peut créer un admin
                         else :
                             current_date = datetime.datetime.today()
                             logging.warning('[ %s ], %s, Admin creation not allowed', username_co, current_date)
@@ -57,7 +63,7 @@ def create(conn, status, username_co):
                         if status == 'sudo' or status == 'admin':
                             status_user = 'patient'
                             medical_data="Medical file"
-                            print("Unauthorized")
+                            #Sudo et admin peuvent créer des patients
                         else :
                             print("Unauthorized")
                             break
@@ -65,6 +71,7 @@ def create(conn, status, username_co):
                         if status == 'sudo' or status == 'admin':
                             status_user = 'doctor'
                             medical_data="Patient list"
+                            #Sudo et admin peuvent créer des docteurs
                         else :
                             print("Unauthorized")
                             break
@@ -75,6 +82,7 @@ def create(conn, status, username_co):
                     logging.warning('[ %s ], %s, Status is empty', username_co, current_date)
                     print('Error status is empty')
                     break
+                #Si aucun status existant n'est saisi
                     
                 print("If you have a compound name, write everything attached")
                 print("Example : JeanMichel")
@@ -85,23 +93,25 @@ def create(conn, status, username_co):
                 if lastname == '':
                     print('Error lastname is empty')
                     current_date = datetime.datetime.today()
-                    logging.erroe('[ %s ], %s, User creation failed >> name/lastname empty', username_co, current_date)
+                    logging.error('[ %s ], %s, User creation failed >> name/lastname empty', username_co, current_date)
+                #Entrée du nom + prénom du user à créer
 
-                x = name.isalpha()
+                x = name.isalpha() #vérifie que la saisi du prénom est bien composée que de lettres.
                 y = lastname.isalpha()
                 if x == True and y == True :
                     username = name[0] + name[1] + lastname #concatenation du prénom et nom.
+                    cur.execute("SELECT first_name, last_name FROM user WHERE username = ?", (username,))
                     #requete sql qui permet de selectionner le prénom du user en se basant sur son username. Si la requete aboutit, alors l'utilisateur existe déjà.
-                    cur.execute("SELECT first_name, last_name FROM user WHERE username = ?", (username,)) 
-                    data = cur.fetchall() #lance la requete.
+                    data = cur.fetchall() #récupère le résultat de la requête sous forme de tuple (collection ordonnée de plusieurs éléments).
                 else :
                     print("Error it's not just letters")
                     current_date = datetime.datetime.today()
-                    logging.erroe('[ %s ], %s, User creation failed >> not just letters', username_co, current_date)
+                    logging.error('[ %s ], %s, User creation failed >> not just letters', username_co, current_date)
                     break
+                #Prend en compte les erreurs de saisi du nom + prénom
 
                 '''
-                fetchall retourne un tableau, en vérifiant la taille du tableau on sait alors si la requete à aboutit à un résultat non null.
+                fetchall retourne un tableau ou tuple, en vérifiant la taille du tableau on sait alors si la requete à aboutit à un résultat non null.
                 '''
                 
                 if len(data) != 0: 
@@ -115,8 +125,10 @@ def create(conn, status, username_co):
                         logging.error('[ %s ], %s, Creation of user failed', username_co, current_date)
                         print("Too many tries")
                         break
+                    #Vérifie que le username est unique.
                 else:              
                     pwd = generatePassword(9)
+                    #Génère un pwd aléatoire d'une longueur de 9 caractères.
                     print()
                     print("------| Adding user |------")
                     print("Username :      ", username)
@@ -134,9 +146,11 @@ def create(conn, status, username_co):
                     pwd = hashlib.sha256(pwd.encode('utf-8')).hexdigest() #permet de hasher le pwd avant la sauvegarde dans la bd
                     isPasswdNeedToChange = 0
                     resp=input("Add this user in the db ? Y/N : ")
+                    #Demande de validation avant la création du user.
                     if resp.lower() == 'y':
                         cur.execute("INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?,?,?)", (username,name,lastname,pwd,status_user,date,medical_data,current_date,isPasswdNeedToChange)) #ajoute l'utilisateur à la db en passant en argument ses informations
-                        conn.commit() #envoyer la requete
+                        conn.commit() 
+                        #Crétion du user dans la db.
                         current_date = datetime.datetime.today()
                         logging.info('[ %s ], %s, User %s add in db.sqlite', username_co, current_date, username)
                         print()
@@ -160,6 +174,7 @@ def create(conn, status, username_co):
                         current_date = datetime.datetime.today()
                         logging.info('[ %s ], %s, User generated not add in db.sqlite', username_co, current_date)
                         rep=input("Do you want to create another user ? Y/N  : ")
+                        #Possibilité d'une autre création
                         if rep.lower()=='y':
                             current_date = datetime.datetime.today()
                             logging.info('[ %s ], %s, New user creation', username_co, current_date)

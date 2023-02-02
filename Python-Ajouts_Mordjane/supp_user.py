@@ -10,13 +10,15 @@ def supp(conn, status, username_co):
     status : status de l'utilisateur en cours.
     '''
     cur = conn.cursor()
-    if status == 'patient': #le patient ne peut pas supprimer de user
+    if status == 'patient': 
         current_date = datetime.datetime.today()
         logging.error("[ %s ], %s, supp_user access denied", username_co, current_date)
         print("Access Denied")
         return 0
+    #Les patients n'ont pas les droits de suppression
 
     data=input("Do you want to see user table ? : Y/N  ")
+    #Propose d'afficher la table avant la suppression d'un user
     if data.lower()=='y':
         current_date = datetime.datetime.today()
         logging.debug("[ %s ], %s, Show table/user before supp_user", username_co, current_date)
@@ -30,37 +32,47 @@ def supp(conn, status, username_co):
         print("SUPPRESSION\n")
         print("Identification of user : ")
         username=input("username : ")    
+        #Permet d'identifier le user à supprimer  dans la db.
         current_date = datetime.datetime.today()
         logging.info("[ %s ], %s, Request supp_user for user %s", username_co, current_date, username)
         cur.execute("SELECT username, status FROM user WHERE username = ?", (username,)) 
+        #Recherche le user dans la db.
         data = cur.fetchall()
         if len(data) != 0:
+            #Si le user exist bien
             if status == "sudo": #si sudo alors il peut tout faire
                 del_user(conn, username, cur, username_co)
+                #Supprime le user
                 other=input("Remove another user ? Y/N :  ")
+                #Posibilité de supprimer d'autres users.
                 if other.lower()=='y':
                     i=0
                 else:
                     return 0
-            elif data[0][-1] == "patient" or data[0][-1]=="doctor": #on récupere le dernier element de la requete sql qui nous retourne toutes les informations de l'utilisateur séléctionné
+            elif data[0][-1] == "patient" or data[0][-1]=="doctor":
+                #Permet de restreindre les autres admins à la suppression de patients/docteurs 
                 del_user(conn, username, cur, username_co)
+                #Supprime le user
                 other=input("Remove another user ? Y/N :  ")
+                #Possibilité de supprimer d'autres users.
                 if other.lower()=='y':
                     i=0
                 else:
                     return 0
-            else : #on ne peut supprimer qu'un patient en tant qu'admin
+            else : 
                     current_date = datetime.datetime.today()
                     logging.error("[ %s ], %s, Attempt to supp user %s >> Unauthorized", username_co, current_date, username)
                     print("Unauthorized")
                     return 0
-        else : #si il n'est pas sudo alors conditions de suppression
+                    #Dans le cas ou un admin souhaite supprimer autre chose qu'un patient ou un odcteur
+        else : 
             i+=1
             if i==3:
                 print("Too many tries")
                 return 0
+                #3 tentatives max pour supprimer ce user. 
             print("Doesn't exists")
-
+            
 
 def del_user(conn, username, cur, username_co):
     '''
@@ -81,9 +93,11 @@ def del_user(conn, username, cur, username_co):
         print()
 
     valid=input("Are you sure you want to delete this user ? Y/N :  ")
+    #Demande de validation avant la suppression du user.
     if valid.lower()=='y':
         cur.execute("DELETE FROM user WHERE username = ?", (username,))
         conn.commit()
+        #Suppression du user dans la db.
         current_date = datetime.datetime.today()
         logging.info("[ %s ], %s, User %s deleted from db.sqlite", username_co, current_date, username)
         print("User removed !")
@@ -92,5 +106,6 @@ def del_user(conn, username, cur, username_co):
         current_date = datetime.datetime.today()
         logging.info("[ %s ], %s, Request to supp_user abort ", username_co, current_date)
         return 0
+        #Dans le cas ou la suppression n'est pas validée.
     
 

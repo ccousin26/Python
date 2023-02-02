@@ -30,8 +30,6 @@ VALUES('Sudo','sudo', 'sudo','9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd1
 ---------------- POUR TESTER / MDP POUR CHAQUE USER : test -----------------------
 
 SELECT * FROM user; 
-
-
 -- afficher la table user
 
 -- Requetes test

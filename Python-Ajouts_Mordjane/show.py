@@ -7,24 +7,29 @@ def show_table(conn, status, username_co):
     conn : connexion sqlite3
     '''
     cursor = conn.cursor()
-
     if status == 'patient':
         current_date = datetime.datetime.today()
         logging.error("[ %s ], %s, Attempt to change an unknown user >> %s", username_co, current_date, username_co)
         print("access unauthorized")
         return 0
+        #Accès non autorisé pour les patients
     else:
         mode=input("show table or only a user? user/table :  ")
+        #Demande si le user veut voir toute la table user ou juste un user en particulier.
         mode = mode.lower()
         loop = 0
         match mode:
             case 'user' :
                 while loop<3:
                     user=input("Username : ")
+                    #Identification du user à afficher
                     cursor.execute("SELECT * FROM user WHERE username = ?", (user,))
+                    #Recherche du user dans la db.
                     data = cursor.fetchall()
                     if len(data)!=0:
+                        #Si le user existe bien dans la table, on l'affiche
                         if status == "doctor":
+                            #Si le user connecté est un docteur, on n'affiche pas le pwd.
                             print(user, "informations :")
                             for row in data:
                                 print("Id:              ", row[0])
@@ -67,6 +72,7 @@ def show_table(conn, status, username_co):
                 print()
                 print("Total rows are:  ", len(records),"\n")
                 if status == "doctor":
+                    #Si le user connecté est un docteur, on affiche tous sauf le pwd.
                     for row in records:
                         print("Id:              ", row[0])
                         print("Pseudo:          ", row[1])
